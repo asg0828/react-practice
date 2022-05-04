@@ -11,8 +11,6 @@ const StyledPopover = styled.div`
 
 const Popover = () => {
 
-  const [isPopover, setIsPopover] = useState(false);
-
   const content = (
     <div>
       <p>Content</p>
@@ -20,28 +18,28 @@ const Popover = () => {
     </div>
   );
 
-  const onPopoverVisible = () => {
-    setIsPopover(true);
-  }
-
-  const onPopoverInvisible = () => {
-    setIsPopover(false);
-  }
 
   return (
-    <div>
-      <AntdPopover content={content} title="Title" visible={isPopover} onMouseEnter={onPopoverVisible} onMouseLeave={onPopoverInvisible}>
-        <Button>Hover me</Button>
+    <StyledPopover>
+      <AntdPopover
+        title="Title"
+        trigger="click"
+        visible={true}
+        content={content}
+        overlayStyle={{backgroundColor: 'red'}}
+      >
+        <Button>overlayStyle</Button>
       </AntdPopover>
-      <AntdPopover content={content} title="Title" trigger="focus">
-        <Button>Focus me</Button>
+      <AntdPopover
+        title="Title"
+        trigger="click"
+        visible={true}
+        content={content}
+        overlayInnerStyle={{backgroundColor: 'blue'}}
+      >
+        <Button>overlayInnerStyle</Button>
       </AntdPopover>
-      <AntdPopover content={content} title="Title" trigger="click">
-        <Button>Click me</Button>
-      </AntdPopover>
-
-      <Button onClick={onPopoverInvisible}>테스트 버튼</Button>
-    </div>
+    </StyledPopover>
   );
 }
 
